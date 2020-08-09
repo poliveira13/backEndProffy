@@ -14,7 +14,10 @@ export async function up(knex: Knex) {
       .onUpdate("CASCADE")
       .onDelete("CASCADE");
 
-    table.timestamp("created_at").defaultTo("now()").notNullable();
+    table
+      .timestamp("created_at")
+      .defaultTo(knex.raw("CURRENT_TIMESTAMP"))
+      .notNullable();
   });
 }
 //Quando da errado o que eu faco para voltar
